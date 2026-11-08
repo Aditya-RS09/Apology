@@ -14,14 +14,16 @@ const lines = [
 ];
 
 const FIRST_GAP = 3000; // short pause after the heading
-const GAP = 8000; // pause between the other sentences (8 seconds)
+const GAP = 1000; // pause between the other sentences (8 seconds)
+const BUTTON_DELAY = 3000; // wait after the last sentence before the button
 
 const bulbColors = ["#ffd166", "#ff9f1c", "#ff595e", "#ffe29a", "#ff7b00"];
 const floaters = ["✨", "🪔", "⭐", "✨", "🪷", "✨"];
 
-const DiwaliScreen = () => {
+const DiwaliScreen = ({ onBlow }) => {
   // the heading is visible from the start
   const [visible, setVisible] = useState(1);
+  const [showButton, setShowButton] = useState(false);
   const bottomRef = useRef(null);
 
   // floating sparkles, generated once
@@ -46,10 +48,17 @@ const DiwaliScreen = () => {
     return () => clearTimeout(t);
   }, [visible]);
 
-  // scroll down smoothly so the newest sentence is always in view
+  // show the button a few seconds after the last sentence
+  useEffect(() => {
+    if (visible < lines.length) return;
+    const t = setTimeout(() => setShowButton(true), BUTTON_DELAY);
+    return () => clearTimeout(t);
+  }, [visible]);
+
+  // scroll down smoothly so the newest sentence (or button) is in view
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-  }, [visible]);
+  }, [visible, showButton]);
 
   return (
     <div className="flex-1 flex items-center justify-center px-6 py-16 relative">
@@ -137,6 +146,20 @@ const DiwaliScreen = () => {
             </p>
           ))}
 
+          {/* Blow the Firecracker button, after the last sentence */}
+          {showButton && (
+            <button
+              onClick={onBlow}
+              className="mt-4 mb-2 px-12 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full text-2xl font-medium shadow-lg hover:scale-105 transition-all duration-300"
+              style={{
+                animation:
+                  "fadeIn 1s ease forwards, buttonGlow 1.5s ease-in-out infinite alternate",
+              }}
+            >
+              Blow the Firecracker 🎆
+            </button>
+          )}
+
           <div ref={bottomRef} />
         </div>
       </div>
@@ -169,6 +192,10 @@ const DiwaliScreen = () => {
           10% { opacity: 0.9; }
           90% { opacity: 0.8; }
           100% { transform: translateY(-1800px) rotate(25deg); opacity: 0; }
+        }
+        @keyframes buttonGlow {
+          from { box-shadow: 0 0 8px 0 rgba(255,140,0,0.5); }
+          to { box-shadow: 0 0 28px 8px rgba(255,140,0,0.8); }
         }
       `}</style>
     </div>

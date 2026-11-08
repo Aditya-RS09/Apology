@@ -6,6 +6,7 @@ import FloatingElements from "./components/FloatingElements";
 import Question from "./components/Question";
 import FinalScreen from "./components/FinalScreen";
 import DiwaliScreen from "./components/DiwaliScreen";
+import AnarScreen from "./components/AnarScreen";
 import MusicPlayer from "./components/MusicPlayer";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   const [showQuestion, setShowQuestion] = useState(false);
   const [showFinal, setShowFinal] = useState(false);
   const [showDiwali, setShowDiwali] = useState(false);
+  const [showAnar, setShowAnar] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-pink-200 via-purple-200 to-pink-300 relative overflow-hidden">
@@ -48,7 +50,11 @@ function App() {
         <FinalScreen onDiwali={() => setShowDiwali(true)} />
       )}
 
-      {showDiwali && <DiwaliScreen />}
+      {showDiwali && !showAnar && (
+        <DiwaliScreen onBlow={() => setShowAnar(true)} />
+      )}
+
+      {showAnar && <AnarScreen />}
     </div>
   );
 }
