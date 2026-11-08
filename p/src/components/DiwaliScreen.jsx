@@ -14,7 +14,7 @@ const lines = [
 ];
 
 const FIRST_GAP = 3000; // short pause after the heading
-const GAP = 1000; // pause between the other sentences (8 seconds)
+const GAP = 8000; // pause between the other sentences (8 seconds)
 const BUTTON_DELAY = 3000; // wait after the last sentence before the button
 
 const bulbColors = ["#ffd166", "#ff9f1c", "#ff595e", "#ffe29a", "#ff7b00"];
