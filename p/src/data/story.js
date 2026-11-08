@@ -19,7 +19,7 @@ export const story = [
   },
   {
     image: img4,
-    text: "This is the birthday that I made special for you😘. I tried doing everything that will make you happy because, last year, I couldn't make it.💓💓",
+    text: "This is the birthday that I made special for you😘💓. I tried doing everything that will make you happy because, last year, I couldn't make it.💓💓",
   },
   {
     image: img5,
