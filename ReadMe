@@ -1,0 +1,121 @@
+# 💖 Sorry Website: A Diwali Special
+
+An interactive, romantic web experience built with React. It walks through a story of memories with photos and messages, asks a heartfelt question, and ends with a Diwali blessing and a glowing anar (firecracker) night scene.
+
+## 🔗 Live Demo
+
+**👉 [https://sorry31.netlify.app](https://sorry31.netlify.app)**
+
+Best experienced on a phone or laptop with sound on 🔊
+
+---
+
+## ✨ Features
+
+- 📸 **Memory story:** photos with heartfelt messages, with **Previous** and **Next** buttons to move through them
+- 🎶 **Background music:** starts on the first tap, with a button in the bottom-right corner to mute or unmute
+- 💌 **Question screen:** an interactive Yes / No question
+- 🎉 **Celebration screen:** a happy ending that leads into the Diwali surprise
+- 🪔 **Diwali blessing:** a decorated card where each wish appears one by one, with twinkling lights and floating sparkles
+- 🎆 **Blow the Firecracker:** a night scene with a glowing anar pot, a burning fuse, a sparks fountain and fireworks, including heart-shaped bursts. Tap anywhere to launch your own
+- 💗 Floating hearts, teddies and candies in the background
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Use |
+| --- | --- |
+| [React](https://react.dev/) | UI and screen flow |
+| [Vite](https://vitejs.dev/) | Fast dev server and build tool |
+| [Tailwind CSS](https://tailwindcss.com/) | Styling |
+| HTML Canvas | Sparks and fireworks animation |
+| [Netlify](https://www.netlify.com/) | Hosting |
+
+---
+
+## 📁 Project Structure
+
+```
+p/
+├── public/
+│   └── music.mp3            # background music
+├── src/
+│   ├── assets/images/       # photos used in the story
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── FloatingElements.jsx
+│   │   ├── Frame.jsx        # photo + message card (Previous / Next)
+│   │   ├── Question.jsx
+│   │   ├── FinalScreen.jsx
+│   │   ├── DiwaliScreen.jsx # Diwali blessing
+│   │   ├── AnarScreen.jsx   # anar and fireworks scene
+│   │   └── MusicPlayer.jsx
+│   ├── data/story.js        # images and messages for each frame
+│   ├── App.jsx              # controls the flow between screens
+│   └── main.jsx
+└── package.json
+```
+
+---
+
+## 🚀 Run Locally
+
+The app lives inside the `p` folder.
+
+```bash
+# 1. Clone the repository
+git clone <your-repo-url>
+
+# 2. Go into the app folder
+cd <repo-folder>/p
+
+# 3. Install dependencies
+npm install
+
+# 4. Start the dev server
+npm run dev
+```
+
+Then open **http://localhost:5173** in your browser.
+
+### Build for production
+
+```bash
+npm run build
+```
+
+The output goes to the `dist` folder.
+
+---
+
+## 🌐 Deployment
+
+Deployed on **Netlify** from this GitHub repository.
+
+| Setting | Value |
+| --- | --- |
+| Base directory | `p` |
+| Build command | `npm run build` |
+| Publish directory | `dist` |
+
+Every push to the main branch redeploys the site automatically.
+
+---
+
+## ✏️ Customize
+
+- **Photos and messages:** edit `src/data/story.js` and put your images in `src/assets/images/`
+- **Music:** replace `public/music.mp3`
+- **Diwali wish:** edit the `lines` list in `src/components/DiwaliScreen.jsx`
+- **Timing:** change `GAP` in `DiwaliScreen.jsx` (pause between sentences) and `IGNITE` in `AnarScreen.jsx` (when the anar lights)
+
+---
+
+## 📝 Note
+
+The audio autoplay policy of browsers means music starts only after the first tap or click on the page.
+
+---
+
+Made with ❤️ for Diwali 🪔
