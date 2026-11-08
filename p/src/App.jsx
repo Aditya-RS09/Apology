@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import FloatingElements from "./components/FloatingElements";
 import Question from "./components/Question";
 import FinalScreen from "./components/FinalScreen";
-
+import MusicPlayer from "./components/MusicPlayer";
 function App() {
   const [current, setCurrent] = useState(0);
   const [showQuestion, setShowQuestion] = useState(false);
