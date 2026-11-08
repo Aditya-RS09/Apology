@@ -4,27 +4,49 @@ const MusicPlayer = () => {
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
 
-  // Browsers block autoplay, so start on the first click anywhere (e.g. "Next")
   useEffect(() => {
-    const start = () => {
-      audioRef.current
-        .play()
-        .then(() => setPlaying(true))
-        .catch(() => {});
-      document.removeEventListener("click", start);
+    const audio = audioRef.current;
+    audio.volume = 0.5;
+
+    const events = ["click", "touchstart", "keydown", "scroll"];
+
+    const removeListeners = () => {
+      events.forEach((e) => window.removeEventListener(e, startOnInteraction));
     };
-    document.addEventListener("click", start);
-    return () => document.removeEventListener("click", start);
+
+    const startOnInteraction = () => {
+      audio
+        .play()
+        .then(() => {
+          setPlaying(true);
+          removeListeners();
+        })
+        .catch((err) => console.log("Audio error:", err));
+    };
+
+    // 1. Try to autoplay as soon as the page opens
+    audio
+      .play()
+      .then(() => setPlaying(true))
+      .catch(() => {
+        // 2. Blocked by the browser, so start on the first interaction
+        events.forEach((e) => window.addEventListener(e, startOnInteraction));
+      });
+
+    return removeListeners;
   }, []);
 
-  const toggle = (e) => {
-    e.stopPropagation();
+  const toggle = () => {
+    const audio = audioRef.current;
     if (playing) {
-      audioRef.current.pause();
+      audio.pause();
+      setPlaying(false);
     } else {
-      audioRef.current.play();
+      audio
+        .play()
+        .then(() => setPlaying(true))
+        .catch((err) => console.log("Audio error:", err));
     }
-    setPlaying(!playing);
   };
 
   return (

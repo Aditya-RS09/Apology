@@ -1,4 +1,4 @@
-const Frame = ({ image, text, onNext }) => {
+const Frame = ({ image, text, onNext, onPrev, isFirst }) => {
   return (
     <div className="relative flex-1 flex items-center justify-center px-10 py-16 overflow-hidden">
 
@@ -26,12 +26,27 @@ const Frame = ({ image, text, onNext }) => {
             {text}
           </p>
 
-          <button
-            onClick={onNext}
-            className="px-14 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-full text-2xl font-medium shadow-lg hover:scale-105 transition-all duration-300"
-          >
-            Next 💖
-          </button>
+          {/* Previous on the left, Next on the right */}
+          <div className="flex items-center justify-between">
+            <button
+              onClick={onPrev}
+              disabled={isFirst}
+              className={`px-14 py-4 rounded-full text-2xl font-medium shadow-lg transition-all duration-300 ${
+                isFirst
+                  ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                  : "bg-white text-pink-500 border-2 border-pink-300 hover:scale-105"
+              }`}
+            >
+              💗 Previous
+            </button>
+
+            <button
+              onClick={onNext}
+              className="px-14 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-full text-2xl font-medium shadow-lg hover:scale-105 transition-all duration-300"
+            >
+              Next 💖
+            </button>
+          </div>
         </div>
 
       </div>
