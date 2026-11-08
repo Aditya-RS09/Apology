@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 const lines = [
   "Happy Diwali, baby! 🪔❤️✨",
-  "I'm truly sorry for making you cry, my love. 🥺💗 It was never my intention to hurt you or make you feel that way. 💔",
+  "I'm truly sorry for making you cry, my love. 🥺💓💗 It was never my intention to hurt you or make you feel that way. 💔",
   "I was going through a difficult time myself, but I should have cared for you, understood your feelings, and been there for you. 🫂❤️",
   "I know I made mistakes, and I take responsibility for them. I genuinely want to make things right by showing you my love through my actions and efforts, not just my words. 🥹💕",
   "I wish you the most beautiful Diwali filled with endless happiness, laughter, love, and countless moments of joy. 🪔🌸💖",
